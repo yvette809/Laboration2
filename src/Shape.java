@@ -1,31 +1,38 @@
-public abstract class Shape {
-    private  int width;
-    private  int height;
-    private int radius;
+
+import java.util.*;
+public abstract class Shape implements Comparable<Shape> {
+
+    //My abstract methods
+    public abstract double getArea();
+    public abstract double getPerimeter();
 
 
-    public int getWidth(){
-        return width;
-    }
-    public void setWidth(int width){
-        this.width = width;
+    // static method to create new shape
+
+    public static Rectangle createRectangle(double length, double  width){
+        return new Rectangle(length,width);
 
     }
 
-    public int getHeight(){
-        return  height;
-    }
-    public void setHeight(int height){
-        this.height = height;
-    }
-   public int getRadius(){
-        return radius;
+    public static Circle createCircle(double radius){
+        return new Circle(radius);
     }
 
-    public void setRadius(int radius){
-        this.radius = radius;
+    // compare to base on area
+    public int compareTo(Shape other){
+        return Double.compare(this.getArea(), other.getArea());
     }
 
-    public  abstract  int getArea(int width, int height);
-    public abstract void getPerimeter();
+    // implement equals and hashcode
+    public boolean equals(Object o){
+        if(this==o)return true;
+        if(o==null || getClass() != o.getClass()) return false;
+        Shape shape = (Shape) o;
+        return Double.compare(shape.getArea(), getArea()) == 0;
+    }
+
+    public int hashCode(){
+        return Double.hashCode(getArea());
+    }
+
 }
