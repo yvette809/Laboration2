@@ -1,19 +1,38 @@
 public class Rectangle extends Shape {
+     private double length;
+     private double width;
 
-    public Rectangle(int width, int height){
+    public Rectangle(double width, double length){
         setWidth(width);
-        setHeight(height);
+        setLength(length);
+
+    }
+
+    public double getWidth(){
+        return width;
+    }
+
+    public double getLength(){
+        return length;
+    }
+
+    public void setWidth(double width){
+        this.width = width;
+    }
+    public void setLength(double length){
+        this.length = length;
 
     }
 
     @Override
-    public int getArea(int width, int height) {
-        return width * height;
+    public double getArea() {
+        return length * width;
 
     }
 
     @Override
-    public void getPerimeter() {
+    public double getPerimeter() {
+        return 2 * (length * width);
 
     }
 }
